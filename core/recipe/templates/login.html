@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} LogIn {% endblock %}
+
+{% block body %}
+
+<form class="container col-6 mx-auto card p-3 shadow-lg" style="margin: 80px;" method="post">
+ 
+  {% csrf_token %}  
+ 
+  <p><h3>LogIn</h3></p>
+    <hr>
+    {% if messages %}
+    {{message.tags}}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      
+      <strong> {{message}}</strong>
+        {% endfor %}
+      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {% endif %}
+    </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input required name="username" type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input required name="password" type="password" class="form-control">
+      </div>
+      <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+      <button type="submit" class="btn btn-primary">LogIn</button>
+    </form>
+
+{% endblock %}

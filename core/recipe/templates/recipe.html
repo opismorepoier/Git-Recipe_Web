@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Recipes {% endblock %}
+
+{% block body %}
+    {% load static %}
+    <form class="col-6 mx-auto card p-3 shadow-lg" style="margin: 80px;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<h3>Add Recipe </h4>Welcome {{request.user}} </h4> </h3>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Enter Recipe name</label>
+          <input required name="recipe_name" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" >Enter Recipe Description</label>
+          <textarea required name="recipe_desc" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Recipe image</label>
+            <input name="recipe_img" type="file" class="form-control">
+          </div>
+     
+
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+
+
+    <table class="table table-bordered container">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Recipe name</th>
+            <th scope="col">Recipe Description</th>
+            <th scope="col">Recipe image</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in recipes %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.recipe_name}}</td>
+            <td>{{i.recipe_desc}}</td>
+            <td>
+              {% load static %}
+              <img src="{% static 'cotr/Recipe_img/{{i.recipe_img}}' %}" style="height: 200px;" alt="img not avaulabe"></td>
+
+            <td>
+              <a href="/delete-recipe/{{i.id}}" class="btn btn-outline-danger">Delete</a> |<a href="/update-recipe/{{i.id}}" class="btn btn-outline-success">Update</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+{% endblock %}

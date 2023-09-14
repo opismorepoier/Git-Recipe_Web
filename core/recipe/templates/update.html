@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Update items {% endblock %}
+
+{% block body %}
+    {% load static %}
+    <form class="col-6 mx-auto card p-3 shadow-lg" style="margin: 65px;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Update Recipe</h3>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Enter Recipe name</label>
+          <input value="{{recipe.recipe_name}}" name="recipe_name" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" >Enter Recipe Description</label>
+          <textarea  name="recipe_desc" class="form-control">{{recipe.recipe_desc}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Recipe image</label>
+            <input name="recipe_img" type="file" class="form-control">
+          </div>
+        <button type="submit" class="btn btn-success">Update Recipe</button>
+      </form>
+    </div>
+
+{% endblock %}
