@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 def blank(request):
     return render(request, 'base.html')
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def recipe(request):
     if request.method=='POST':
         data = request.POST
@@ -121,3 +121,7 @@ def logout_page(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def UserPro(request):
+    return render(request, 'userPro.html')

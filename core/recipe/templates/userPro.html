@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} User profile {% endblock %}
+
+{% block body %}
+
+<div class="card col-6 shadow-lg" style="padding: 40px; margin: 60px;">
+    <h3><b><u>User Profile</u></b> </h3>
+    <div>
+        User Name : {{request.user}}
+    </div>
+    <div>
+        Name : {{request.user.first_name}} {{request.user.last_name}}
+    </div>
+</div>
+
+{% endblock %}

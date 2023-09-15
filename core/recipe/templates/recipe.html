@@ -21,8 +21,11 @@
             <input name="recipe_img" type="file" class="form-control">
           </div>
      
-
+          {% if request.user.is_authenticated %}
         <button type="submit" class="btn btn-success">Submit</button>
+        {% else %}
+        <button type="button" class="btn btn-lg btn-success" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="Log In Required">Submit</button>
+        {% endif %}
       </form>
     </div>
 
@@ -46,11 +49,15 @@
             <td>
               {% load static %}
               <img src="{% static 'cotr/Recipe_img/{{i.recipe_img}}' %}" style="height: 200px;" alt="img not avaulabe"></td>
-
+              {% if request.user.is_authenticated %}
             <td>
               <a href="/delete-recipe/{{i.id}}" class="btn btn-outline-danger">Delete</a> |<a href="/update-recipe/{{i.id}}" class="btn btn-outline-success">Update</a>
             </td>
           </tr>
+          {% else  %}
+          <td>You have to login to access this feature</td>
+          
+          {% endif %}
           {% endfor %}
         </tbody>
       </table>
